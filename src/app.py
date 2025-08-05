@@ -15,7 +15,6 @@ from PyQt6.QtCore import Qt, QSettings, QEvent
 from PyQt6.QtGui import QFont
 
 from .ui.menu_bar import MenuBar
-from .ui.tool_bar import ToolBar
 from .ui.status_bar import StatusBar
 from .ui.custom_tab_widget import CustomTabWidget
 from .utils.config import Config
@@ -54,12 +53,10 @@ class EditorApp(QMainWindow):
         
         # Создание компонентов UI
         self.menu_bar = MenuBar(self)
-        self.tool_bar = ToolBar(self)
         self.status_bar = StatusBar(self)
         self.tab_widget = CustomTabWidget(self)
         
         # Добавление компонентов в layout
-        main_layout.addWidget(self.tool_bar)
         main_layout.addWidget(self.tab_widget)
         
         # Установка меню и статусной панели
@@ -75,10 +72,7 @@ class EditorApp(QMainWindow):
         self.menu_bar.file_save_as.triggered.connect(self.save_file_as)
         self.menu_bar.file_exit.triggered.connect(self.close)
         
-        # Подключение сигналов панели инструментов
-        self.tool_bar.new_action.triggered.connect(self.new_file)
-        self.tool_bar.open_action.triggered.connect(self.open_file)
-        self.tool_bar.save_action.triggered.connect(self.save_file)
+
         
         # Подключение сигналов редактора через tab_widget
         self.tab_widget.text_changed.connect(self.on_text_changed)
