@@ -1,0 +1,193 @@
+{
+  "conversation_id": "88d59171-7fd8-422f-838b-0dfd0edbb78c",
+  "title": "а",
+  "created_at": "2025-08-08T00:36:10.530079",
+  "updated_at": "2025-08-08T00:36:34.510863",
+  "messages": [
+    {
+      "message_id": "0859d13e-c8bd-4f3a-b348-7b045ae2e201",
+      "content": "а",
+      "role": "user",
+      "message_type": "text",
+      "timestamp": "2025-08-08T00:36:10.530592",
+      "metadata": {}
+    },
+    {
+      "message_id": "c1a8359c-d143-4424-9035-61677796de37",
+      "content": "Это демо-ответ от ИИ. Функция чата в разработке...",
+      "role": "assistant",
+      "message_type": "text",
+      "timestamp": "2025-08-08T00:36:11.050975",
+      "metadata": {
+        "processing_time": 0.5106854438781738,
+        "model_info": {
+          "name": "Demo AI",
+          "version": "1.0",
+          "provider": "Mock Provider"
+        }
+      }
+    },
+    {
+      "message_id": "d37dbe3e-3b6f-4630-bb69-6df7a04f1818",
+      "content": "привет привет привет привет привет привет привет привет привет привет привет привет привет привет привет привет привет привет привет привет привет привет привет привет привет привет",
+      "role": "user",
+      "message_type": "text",
+      "timestamp": "2025-08-08T00:36:17.555140",
+      "metadata": {}
+    },
+    {
+      "message_id": "28cd9ddb-d4c0-4e8a-a015-4659637b55c3",
+      "content": "Я понимаю ваш запрос. В данный момент это демо-версия чата.",
+      "role": "assistant",
+      "message_type": "text",
+      "timestamp": "2025-08-08T00:36:18.565161",
+      "metadata": {
+        "processing_time": 1.0010716915130615,
+        "model_info": {
+          "name": "Demo AI",
+          "version": "1.0",
+          "provider": "Mock Provider"
+        }
+      }
+    },
+    {
+      "message_id": "48259b5e-d142-4518-a0cd-92a81bf2a3e2",
+      "content": "привет привет привет привет привет привет привет привет привет привет привет привет привет привет привет привет привет привет",
+      "role": "user",
+      "message_type": "text",
+      "timestamp": "2025-08-08T00:36:19.725342",
+      "metadata": {}
+    },
+    {
+      "message_id": "c341f512-14de-4ffc-a0fe-8801a6561270",
+      "content": "Спасибо за сообщение! Это тестовый ответ от ИИ.",
+      "role": "assistant",
+      "message_type": "text",
+      "timestamp": "2025-08-08T00:36:21.252881",
+      "metadata": {
+        "processing_time": 1.513672113418579,
+        "model_info": {
+          "name": "Demo AI",
+          "version": "1.0",
+          "provider": "Mock Provider"
+        }
+      }
+    },
+    {
+      "message_id": "2a6f5868-5892-431b-9874-f4cbceb2a25f",
+      "content": "привет привет привет привет привет привет привет привет привет привет привет привет привет привет привет привет привет привет привет привет",
+      "role": "user",
+      "message_type": "text",
+      "timestamp": "2025-08-08T00:36:21.835473",
+      "metadata": {}
+    },
+    {
+      "message_id": "9bde33b8-2642-4f88-91d1-4cfc34d64e21",
+      "content": "Ваш запрос обработан. Это демонстрационный ответ.",
+      "role": "assistant",
+      "message_type": "text",
+      "timestamp": "2025-08-08T00:36:22.346007",
+      "metadata": {
+        "processing_time": 0.5017831325531006,
+        "model_info": {
+          "name": "Demo AI",
+          "version": "1.0",
+          "provider": "Mock Provider"
+        }
+      }
+    },
+    {
+      "message_id": "cdc33d15-3de7-44fb-b46c-40f6f8cc0825",
+      "content": "привет привет привет привет",
+      "role": "user",
+      "message_type": "text",
+      "timestamp": "2025-08-08T00:36:24.275293",
+      "metadata": {}
+    },
+    {
+      "message_id": "4dbafc8a-537d-4796-8320-84a092dbb214",
+      "content": "Интересный вопрос! Пока что я отвечаю в демо-режиме.",
+      "role": "assistant",
+      "message_type": "text",
+      "timestamp": "2025-08-08T00:36:25.295295",
+      "metadata": {
+        "processing_time": 1.0064868927001953,
+        "model_info": {
+          "name": "Demo AI",
+          "version": "1.0",
+          "provider": "Mock Provider"
+        }
+      }
+    },
+    {
+      "message_id": "1d13318a-1347-41da-bfcc-7b0556d9c734",
+      "content": "привет привет привет привет привет привет привет привет",
+      "role": "user",
+      "message_type": "text",
+      "timestamp": "2025-08-08T00:36:26.395450",
+      "metadata": {}
+    },
+    {
+      "message_id": "532e74f3-c290-4dd3-9354-1751a00f28dc",
+      "content": "Это демо-ответ от ИИ. Функция чата в разработке...",
+      "role": "assistant",
+      "message_type": "text",
+      "timestamp": "2025-08-08T00:36:27.910574",
+      "metadata": {
+        "processing_time": 1.507624864578247,
+        "model_info": {
+          "name": "Demo AI",
+          "version": "1.0",
+          "provider": "Mock Provider"
+        }
+      }
+    },
+    {
+      "message_id": "2d6faf0f-3618-48b8-a1e4-b8c5f5c2896c",
+      "content": "привет привет привет привет",
+      "role": "user",
+      "message_type": "text",
+      "timestamp": "2025-08-08T00:36:32.037811",
+      "metadata": {}
+    },
+    {
+      "message_id": "75fc40a2-3ff9-442b-a15a-acf531e553a0",
+      "content": "Я понимаю ваш запрос. В данный момент это демо-версия чата.",
+      "role": "assistant",
+      "message_type": "text",
+      "timestamp": "2025-08-08T00:36:32.557653",
+      "metadata": {
+        "processing_time": 0.5122852325439453,
+        "model_info": {
+          "name": "Demo AI",
+          "version": "1.0",
+          "provider": "Mock Provider"
+        }
+      }
+    },
+    {
+      "message_id": "f6a6c23b-46a0-494d-8ddb-78eb1ab03db6",
+      "content": "привет привет",
+      "role": "user",
+      "message_type": "text",
+      "timestamp": "2025-08-08T00:36:33.495623",
+      "metadata": {}
+    },
+    {
+      "message_id": "e125f6ae-db1d-40aa-a1ce-1acdeed1b47e",
+      "content": "Спасибо за сообщение! Это тестовый ответ от ИИ.",
+      "role": "assistant",
+      "message_type": "text",
+      "timestamp": "2025-08-08T00:36:34.510863",
+      "metadata": {
+        "processing_time": 1.0093364715576172,
+        "model_info": {
+          "name": "Demo AI",
+          "version": "1.0",
+          "provider": "Mock Provider"
+        }
+      }
+    }
+  ],
+  "metadata": {}
+}

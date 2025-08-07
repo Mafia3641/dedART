@@ -1,0 +1,65 @@
+{
+  "conversation_id": "4fff62a2-9404-4d4a-b6d7-a6ac4d0c6deb",
+  "title": "привет",
+  "created_at": "2025-08-07T22:27:59.666101",
+  "updated_at": "2025-08-07T22:28:06.733735",
+  "messages": [
+    {
+      "message_id": "c1f8c198-d3b6-431c-9688-1564f27c8226",
+      "content": "привет",
+      "role": "user",
+      "message_type": "text",
+      "timestamp": "2025-08-07T22:27:59.666101",
+      "metadata": {}
+    },
+    {
+      "message_id": "a200133f-94ad-4e67-ac01-60d0dac99394",
+      "content": "п",
+      "role": "user",
+      "message_type": "text",
+      "timestamp": "2025-08-07T22:28:03.501750",
+      "metadata": {}
+    },
+    {
+      "message_id": "5279b12f-8db3-4dad-989f-24e266d58ed8",
+      "content": "п",
+      "role": "user",
+      "message_type": "text",
+      "timestamp": "2025-08-07T22:28:03.950452",
+      "metadata": {}
+    },
+    {
+      "message_id": "7b8328ae-5b73-4a3d-bb41-1a20236af921",
+      "content": "п",
+      "role": "user",
+      "message_type": "text",
+      "timestamp": "2025-08-07T22:28:04.320847",
+      "metadata": {}
+    },
+    {
+      "message_id": "764b269f-ac2e-4baf-bc91-5ce8678aec94",
+      "content": "папви",
+      "role": "user",
+      "message_type": "text",
+      "timestamp": "2025-08-07T22:28:05.207017",
+      "metadata": {}
+    },
+    {
+      "message_id": "e5cd605f-3275-4213-bdf4-57c4111c35c5",
+      "content": "вапиавпи",
+      "role": "user",
+      "message_type": "text",
+      "timestamp": "2025-08-07T22:28:06.168807",
+      "metadata": {}
+    },
+    {
+      "message_id": "10ae67b9-b107-469e-b862-2706ca6854c8",
+      "content": "ивп",
+      "role": "user",
+      "message_type": "text",
+      "timestamp": "2025-08-07T22:28:06.733735",
+      "metadata": {}
+    }
+  ],
+  "metadata": {}
+}

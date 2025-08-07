@@ -1,0 +1,33 @@
+{
+  "conversation_id": "fbc17bb6-a4b2-4a53-a4b5-b969870edf47",
+  "title": "па",
+  "created_at": "2025-08-07T22:28:35.699618",
+  "updated_at": "2025-08-07T22:28:52.983598",
+  "messages": [
+    {
+      "message_id": "e259bcf0-86a3-4d33-bc1a-0688080c6fa8",
+      "content": "па",
+      "role": "user",
+      "message_type": "text",
+      "timestamp": "2025-08-07T22:28:35.699618",
+      "metadata": {}
+    },
+    {
+      "message_id": "88c2818b-b8fe-4154-8bc8-889d0fcfdd49",
+      "content": "как",
+      "role": "user",
+      "message_type": "text",
+      "timestamp": "2025-08-07T22:28:48.940043",
+      "metadata": {}
+    },
+    {
+      "message_id": "8593a45e-24d6-4428-9cfd-3f086b7a821f",
+      "content": "привет",
+      "role": "user",
+      "message_type": "text",
+      "timestamp": "2025-08-07T22:28:52.983598",
+      "metadata": {}
+    }
+  ],
+  "metadata": {}
+}

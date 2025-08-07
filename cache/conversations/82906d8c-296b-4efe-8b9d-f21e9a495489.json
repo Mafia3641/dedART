@@ -1,0 +1,55 @@
+{
+  "conversation_id": "82906d8c-296b-4efe-8b9d-f21e9a495489",
+  "title": "привет",
+  "created_at": "2025-08-07T23:34:05.175011",
+  "updated_at": "2025-08-07T23:34:07.890579",
+  "messages": [
+    {
+      "message_id": "561c8392-5264-4434-bfe6-33075ba90358",
+      "content": "привет",
+      "role": "user",
+      "message_type": "text",
+      "timestamp": "2025-08-07T23:34:05.175011",
+      "metadata": {}
+    },
+    {
+      "message_id": "772d3f29-609e-495f-be40-b849d18858b8",
+      "content": "Это демо-ответ от ИИ. Функция чата в разработке...",
+      "role": "assistant",
+      "message_type": "text",
+      "timestamp": "2025-08-07T23:34:05.695187",
+      "metadata": {
+        "processing_time": 0.5095584392547607,
+        "model_info": {
+          "name": "Demo AI",
+          "version": "1.0",
+          "provider": "Mock Provider"
+        }
+      }
+    },
+    {
+      "message_id": "44ec6190-270d-42e3-800c-5c172c2ee641",
+      "content": "п",
+      "role": "user",
+      "message_type": "text",
+      "timestamp": "2025-08-07T23:34:06.875529",
+      "metadata": {}
+    },
+    {
+      "message_id": "15752486-2626-49df-9435-182dcab82f39",
+      "content": "Я понимаю ваш запрос. В данный момент это демо-версия чата.",
+      "role": "assistant",
+      "message_type": "text",
+      "timestamp": "2025-08-07T23:34:07.890579",
+      "metadata": {
+        "processing_time": 1.0019826889038086,
+        "model_info": {
+          "name": "Demo AI",
+          "version": "1.0",
+          "provider": "Mock Provider"
+        }
+      }
+    }
+  ],
+  "metadata": {}
+}

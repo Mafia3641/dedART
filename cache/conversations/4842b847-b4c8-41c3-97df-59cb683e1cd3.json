@@ -1,0 +1,78 @@
+{
+  "conversation_id": "4842b847-b4c8-41c3-97df-59cb683e1cd3",
+  "title": "привет",
+  "created_at": "2025-08-08T00:14:56.937724",
+  "updated_at": "2025-08-08T00:15:05.217756",
+  "messages": [
+    {
+      "message_id": "c53d7035-0e41-40cb-a2ef-db2afd82c714",
+      "content": "привет",
+      "role": "user",
+      "message_type": "text",
+      "timestamp": "2025-08-08T00:14:56.937724",
+      "metadata": {}
+    },
+    {
+      "message_id": "06d844f5-8a6a-467b-ac90-ebffa0ca4d83",
+      "content": "Это демо-ответ от ИИ. Функция чата в разработке...",
+      "role": "assistant",
+      "message_type": "text",
+      "timestamp": "2025-08-08T00:14:57.467641",
+      "metadata": {
+        "processing_time": 0.513270378112793,
+        "model_info": {
+          "name": "Demo AI",
+          "version": "1.0",
+          "provider": "Mock Provider"
+        }
+      }
+    },
+    {
+      "message_id": "a942f1e6-1347-4db9-b5dd-77682b842094",
+      "content": "привет привет",
+      "role": "user",
+      "message_type": "text",
+      "timestamp": "2025-08-08T00:14:59.517723",
+      "metadata": {}
+    },
+    {
+      "message_id": "ff4d6c5c-1f6f-42db-b763-1886e6ef595c",
+      "content": "Я понимаю ваш запрос. В данный момент это демо-версия чата.",
+      "role": "assistant",
+      "message_type": "text",
+      "timestamp": "2025-08-08T00:15:00.529240",
+      "metadata": {
+        "processing_time": 1.0038204193115234,
+        "model_info": {
+          "name": "Demo AI",
+          "version": "1.0",
+          "provider": "Mock Provider"
+        }
+      }
+    },
+    {
+      "message_id": "c5afb11d-ceb4-4af3-a04d-32168b5dff7f",
+      "content": "привет привет привет",
+      "role": "user",
+      "message_type": "text",
+      "timestamp": "2025-08-08T00:15:03.692931",
+      "metadata": {}
+    },
+    {
+      "message_id": "2282678b-c012-4260-b55f-6d77c36a9cc4",
+      "content": "Спасибо за сообщение! Это тестовый ответ от ИИ.",
+      "role": "assistant",
+      "message_type": "text",
+      "timestamp": "2025-08-08T00:15:05.217756",
+      "metadata": {
+        "processing_time": 1.5145878791809082,
+        "model_info": {
+          "name": "Demo AI",
+          "version": "1.0",
+          "provider": "Mock Provider"
+        }
+      }
+    }
+  ],
+  "metadata": {}
+}

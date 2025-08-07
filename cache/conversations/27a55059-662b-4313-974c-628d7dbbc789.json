@@ -1,0 +1,25 @@
+{
+  "conversation_id": "27a55059-662b-4313-974c-628d7dbbc789",
+  "title": "п",
+  "created_at": "2025-08-08T00:24:31.005744",
+  "updated_at": "2025-08-08T00:24:34.475281",
+  "messages": [
+    {
+      "message_id": "a33393a5-2f20-4b98-953a-20ae22c09d37",
+      "content": "п",
+      "role": "user",
+      "message_type": "text",
+      "timestamp": "2025-08-08T00:24:31.005744",
+      "metadata": {}
+    },
+    {
+      "message_id": "34d23383-b2b7-41e4-a3ff-523793f141eb",
+      "content": "привет",
+      "role": "user",
+      "message_type": "text",
+      "timestamp": "2025-08-08T00:24:34.475281",
+      "metadata": {}
+    }
+  ],
+  "metadata": {}
+}

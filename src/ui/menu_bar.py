@@ -11,7 +11,6 @@ class MenuBar(QMenuBar):
     
     def __init__(self, parent=None):
         super().__init__(parent)
-        self.parent = parent
         self.init_menus()
     
     def init_menus(self):
@@ -50,66 +49,5 @@ class MenuBar(QMenuBar):
         self.file_exit.setStatusTip("Выйти из приложения")
         self.file_menu.addAction(self.file_exit)
         
-        # Меню Правка
-        self.edit_menu = QMenu("&Правка", self)
-        self.addMenu(self.edit_menu)
-        
-        # Действия меню Правка
-        self.edit_undo = QAction("&Отменить", self)
-        self.edit_undo.setShortcut(QKeySequence.StandardKey.Undo)
-        self.edit_undo.setStatusTip("Отменить последнее действие")
-        self.edit_menu.addAction(self.edit_undo)
-        
-        self.edit_redo = QAction("&Повторить", self)
-        self.edit_redo.setShortcut(QKeySequence.StandardKey.Redo)
-        self.edit_redo.setStatusTip("Повторить отмененное действие")
-        self.edit_menu.addAction(self.edit_redo)
-        
-        self.edit_menu.addSeparator()
-        
-        self.edit_cut = QAction("&Вырезать", self)
-        self.edit_cut.setShortcut(QKeySequence.StandardKey.Cut)
-        self.edit_cut.setStatusTip("Вырезать выделенный текст")
-        self.edit_menu.addAction(self.edit_cut)
-        
-        self.edit_copy = QAction("&Копировать", self)
-        self.edit_copy.setShortcut(QKeySequence.StandardKey.Copy)
-        self.edit_copy.setStatusTip("Копировать выделенный текст")
-        self.edit_menu.addAction(self.edit_copy)
-        
-        self.edit_paste = QAction("&Вставить", self)
-        self.edit_paste.setShortcut(QKeySequence.StandardKey.Paste)
-        self.edit_paste.setStatusTip("Вставить текст из буфера обмена")
-        self.edit_menu.addAction(self.edit_paste)
-        
-        # Меню Вид
-        self.view_menu = QMenu("&Вид", self)
-        self.addMenu(self.view_menu)
-        
-        # Действия меню Вид
-        self.view_zoom_in = QAction("&Увеличить", self)
-        self.view_zoom_in.setShortcut(QKeySequence.StandardKey.ZoomIn)
-        self.view_zoom_in.setStatusTip("Увеличить масштаб")
-        self.view_menu.addAction(self.view_zoom_in)
-        
-        self.view_zoom_out = QAction("&Уменьшить", self)
-        self.view_zoom_out.setShortcut(QKeySequence.StandardKey.ZoomOut)
-        self.view_zoom_out.setStatusTip("Уменьшить масштаб")
-        self.view_menu.addAction(self.view_zoom_out)
-        
-        self.view_menu.addSeparator()
-        
-        self.view_line_numbers = QAction("&Номера строк", self)
-        self.view_line_numbers.setCheckable(True)
-        self.view_line_numbers.setChecked(True)
-        self.view_line_numbers.setStatusTip("Показать/скрыть номера строк")
-        self.view_menu.addAction(self.view_line_numbers)
-        
-        # Меню Справка
-        self.help_menu = QMenu("&Справка", self)
-        self.addMenu(self.help_menu)
-        
-        # Действия меню Справка
-        self.help_about = QAction("&О программе", self)
-        self.help_about.setStatusTip("Информация о программе")
-        self.help_menu.addAction(self.help_about) 
+        # Удалены неиспользуемые меню: Правка, Вид, Справка
+        # Они не подключены к обработчикам в приложении 

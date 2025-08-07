@@ -11,7 +11,6 @@ class StatusBar(QStatusBar):
     
     def __init__(self, parent=None):
         super().__init__(parent)
-        self.parent = parent
         self.init_widgets()
     
     def init_widgets(self):

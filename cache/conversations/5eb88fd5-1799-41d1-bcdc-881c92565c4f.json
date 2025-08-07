@@ -1,0 +1,101 @@
+{
+  "conversation_id": "5eb88fd5-1799-41d1-bcdc-881c92565c4f",
+  "title": "п",
+  "created_at": "2025-08-07T23:48:37.930954",
+  "updated_at": "2025-08-07T23:48:47.124158",
+  "messages": [
+    {
+      "message_id": "d8945a4c-739f-4f68-94a2-b357860e5386",
+      "content": "п",
+      "role": "user",
+      "message_type": "text",
+      "timestamp": "2025-08-07T23:48:37.941076",
+      "metadata": {}
+    },
+    {
+      "message_id": "5ea34cad-ffdd-4f3a-bb3c-1071018cb1cc",
+      "content": "Это демо-ответ от ИИ. Функция чата в разработке...",
+      "role": "assistant",
+      "message_type": "text",
+      "timestamp": "2025-08-07T23:48:38.452432",
+      "metadata": {
+        "processing_time": 0.5008187294006348,
+        "model_info": {
+          "name": "Demo AI",
+          "version": "1.0",
+          "provider": "Mock Provider"
+        }
+      }
+    },
+    {
+      "message_id": "edd59c09-5a96-428e-8265-87e14c61bfc1",
+      "content": "привет",
+      "role": "user",
+      "message_type": "text",
+      "timestamp": "2025-08-07T23:48:40.300839",
+      "metadata": {}
+    },
+    {
+      "message_id": "dc08eab5-9ec1-4856-b2ce-e083ce72ea6d",
+      "content": "Я понимаю ваш запрос. В данный момент это демо-версия чата.",
+      "role": "assistant",
+      "message_type": "text",
+      "timestamp": "2025-08-07T23:48:41.324779",
+      "metadata": {
+        "processing_time": 1.0110762119293213,
+        "model_info": {
+          "name": "Demo AI",
+          "version": "1.0",
+          "provider": "Mock Provider"
+        }
+      }
+    },
+    {
+      "message_id": "469cbb02-4b29-40c4-b8d5-42f051ab6920",
+      "content": "привет привет",
+      "role": "user",
+      "message_type": "text",
+      "timestamp": "2025-08-07T23:48:44.071401",
+      "metadata": {}
+    },
+    {
+      "message_id": "e653d669-dfaa-4286-9924-124dcc1b78e7",
+      "content": "Спасибо за сообщение! Это тестовый ответ от ИИ.",
+      "role": "assistant",
+      "message_type": "text",
+      "timestamp": "2025-08-07T23:48:45.584929",
+      "metadata": {
+        "processing_time": 1.500478982925415,
+        "model_info": {
+          "name": "Demo AI",
+          "version": "1.0",
+          "provider": "Mock Provider"
+        }
+      }
+    },
+    {
+      "message_id": "4463fe1f-2f19-4fd8-af38-84966fc0584b",
+      "content": "пппппппппппппппппп",
+      "role": "user",
+      "message_type": "text",
+      "timestamp": "2025-08-07T23:48:46.602865",
+      "metadata": {}
+    },
+    {
+      "message_id": "c961eb20-6064-417c-b783-26b843e5d266",
+      "content": "Ваш запрос обработан. Это демонстрационный ответ.",
+      "role": "assistant",
+      "message_type": "text",
+      "timestamp": "2025-08-07T23:48:47.124158",
+      "metadata": {
+        "processing_time": 0.5077528953552246,
+        "model_info": {
+          "name": "Demo AI",
+          "version": "1.0",
+          "provider": "Mock Provider"
+        }
+      }
+    }
+  ],
+  "metadata": {}
+}

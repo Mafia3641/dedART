@@ -4,7 +4,7 @@
 
 import configparser
 from pathlib import Path
-from typing import Any, Dict, Optional
+from typing import Any
 
 
 class Config:
@@ -101,64 +101,8 @@ class Config:
         self.config.set(section, key, str(value))
         self.save_config()
     
-    def get_editor_font_family(self) -> str:
-        """Получение семейства шрифта редактора"""
-        return self.get('Editor', 'font_family', 'Consolas')
-    
-    def get_editor_font_size(self) -> int:
-        """Получение размера шрифта редактора"""
-        return self.getint('Editor', 'font_size', 12)
-    
-    def get_editor_tab_size(self) -> int:
-        """Получение размера табуляции"""
-        return self.getint('Editor', 'tab_size', 4)
-    
-    def is_line_numbers_enabled(self) -> bool:
-        """Проверка включения номеров строк"""
-        return self.getboolean('Editor', 'line_numbers', True)
-    
-    def is_word_wrap_enabled(self) -> bool:
-        """Проверка включения переноса слов"""
-        return self.getboolean('Editor', 'word_wrap', False)
-    
-    def is_auto_indent_enabled(self) -> bool:
-        """Проверка включения автоотступов"""
-        return self.getboolean('Editor', 'auto_indent', True)
-    
-    def get_theme(self) -> str:
-        """Получение текущей темы"""
-        return self.get('General', 'theme', 'dark')
-    
-    def get_language(self) -> str:
-        """Получение языка интерфейса"""
-        return self.get('General', 'language', 'ru')
-    
-    def is_auto_save_enabled(self) -> bool:
-        """Проверка включения автосохранения"""
-        return self.getboolean('General', 'auto_save', True)
-    
-    def get_auto_save_interval(self) -> int:
-        """Получение интервала автосохранения в секундах"""
-        return self.getint('General', 'auto_save_interval', 300)
-    
-    def get_default_encoding(self) -> str:
-        """Получение кодировки по умолчанию"""
-        return self.get('Files', 'default_encoding', 'utf-8')
-    
-    def get_window_size(self) -> tuple:
-        """Получение размера окна"""
-        width = self.getint('Interface', 'window_width', 1200)
-        height = self.getint('Interface', 'window_height', 800)
-        return (width, height)
-    
-    def set_window_size(self, width: int, height: int):
-        """Установка размера окна"""
-        self.set('Interface', 'window_width', width)
-        self.set('Interface', 'window_height', height)
-    
-    def get_all_settings(self) -> Dict[str, Dict[str, Any]]:
-        """Получение всех настроек"""
-        settings = {}
-        for section in self.config.sections():
-            settings[section] = dict(self.config[section])
-        return settings 
+    # Удалены неиспользуемые методы получения настроек:
+    # get_editor_font_family, get_editor_font_size, get_editor_tab_size,
+    # is_line_numbers_enabled, is_word_wrap_enabled, is_auto_indent_enabled,
+    # get_theme, get_language, is_auto_save_enabled, get_auto_save_interval,
+    # get_default_encoding, get_window_size, set_window_size, get_all_settings 

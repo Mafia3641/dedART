@@ -1,0 +1,78 @@
+{
+  "conversation_id": "3a96c4f9-1e93-4041-89dc-fd650574c66d",
+  "title": "привет",
+  "created_at": "2025-08-07T23:33:13.693793",
+  "updated_at": "2025-08-07T23:33:24.132228",
+  "messages": [
+    {
+      "message_id": "e913c7cc-ddd9-4ff1-b394-5ede7aa832d7",
+      "content": "привет",
+      "role": "user",
+      "message_type": "text",
+      "timestamp": "2025-08-07T23:33:13.693793",
+      "metadata": {}
+    },
+    {
+      "message_id": "29c9f7da-d355-4bb4-8717-ad1c691f6741",
+      "content": "Это демо-ответ от ИИ. Функция чата в разработке...",
+      "role": "assistant",
+      "message_type": "text",
+      "timestamp": "2025-08-07T23:33:14.209547",
+      "metadata": {
+        "processing_time": 0.5025780200958252,
+        "model_info": {
+          "name": "Demo AI",
+          "version": "1.0",
+          "provider": "Mock Provider"
+        }
+      }
+    },
+    {
+      "message_id": "8da768e7-ea01-4423-86ed-b5cce11d5648",
+      "content": "привет привет",
+      "role": "user",
+      "message_type": "text",
+      "timestamp": "2025-08-07T23:33:17.329685",
+      "metadata": {}
+    },
+    {
+      "message_id": "be780ef1-75b3-4e9d-9acf-a532d6ac3c40",
+      "content": "Я понимаю ваш запрос. В данный момент это демо-версия чата.",
+      "role": "assistant",
+      "message_type": "text",
+      "timestamp": "2025-08-07T23:33:18.346544",
+      "metadata": {
+        "processing_time": 1.0104806423187256,
+        "model_info": {
+          "name": "Demo AI",
+          "version": "1.0",
+          "provider": "Mock Provider"
+        }
+      }
+    },
+    {
+      "message_id": "b0978134-1543-4190-8b19-98eca17e474e",
+      "content": "ппппппппппппппппппппппппппппппппппппппппппппппппппппппппппппппппппппппппппппппппппппппппппппп",
+      "role": "user",
+      "message_type": "text",
+      "timestamp": "2025-08-07T23:33:22.603976",
+      "metadata": {}
+    },
+    {
+      "message_id": "d25a95a7-4231-4de9-82b2-3034dc9217a4",
+      "content": "Спасибо за сообщение! Это тестовый ответ от ИИ.",
+      "role": "assistant",
+      "message_type": "text",
+      "timestamp": "2025-08-07T23:33:24.132228",
+      "metadata": {
+        "processing_time": 1.5112330913543701,
+        "model_info": {
+          "name": "Demo AI",
+          "version": "1.0",
+          "provider": "Mock Provider"
+        }
+      }
+    }
+  ],
+  "metadata": {}
+}

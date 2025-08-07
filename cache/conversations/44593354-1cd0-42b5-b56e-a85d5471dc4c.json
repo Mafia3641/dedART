@@ -1,0 +1,78 @@
+{
+  "conversation_id": "44593354-1cd0-42b5-b56e-a85d5471dc4c",
+  "title": "привет привет привет привет",
+  "created_at": "2025-08-08T00:15:23.868417",
+  "updated_at": "2025-08-08T00:15:32.921305",
+  "messages": [
+    {
+      "message_id": "c0dad17d-a048-46d3-9771-6cef9a8614c8",
+      "content": "привет привет привет привет",
+      "role": "user",
+      "message_type": "text",
+      "timestamp": "2025-08-08T00:15:23.868417",
+      "metadata": {}
+    },
+    {
+      "message_id": "ac97f14c-1bf8-4dbe-a3de-d828e1d2eeca",
+      "content": "Это демо-ответ от ИИ. Функция чата в разработке...",
+      "role": "assistant",
+      "message_type": "text",
+      "timestamp": "2025-08-08T00:15:24.394188",
+      "metadata": {
+        "processing_time": 0.5148622989654541,
+        "model_info": {
+          "name": "Demo AI",
+          "version": "1.0",
+          "provider": "Mock Provider"
+        }
+      }
+    },
+    {
+      "message_id": "b09f6c8d-072b-4ac6-abca-89f5e133a755",
+      "content": "привет привет привет",
+      "role": "user",
+      "message_type": "text",
+      "timestamp": "2025-08-08T00:15:27.858343",
+      "metadata": {}
+    },
+    {
+      "message_id": "6c046d1a-9a4a-4d59-b23f-37a9ae87506f",
+      "content": "Я понимаю ваш запрос. В данный момент это демо-версия чата.",
+      "role": "assistant",
+      "message_type": "text",
+      "timestamp": "2025-08-08T00:15:28.869679",
+      "metadata": {
+        "processing_time": 1.0029480457305908,
+        "model_info": {
+          "name": "Demo AI",
+          "version": "1.0",
+          "provider": "Mock Provider"
+        }
+      }
+    },
+    {
+      "message_id": "28e25e62-29f1-4fae-999b-b3254a634ba4",
+      "content": "привет",
+      "role": "user",
+      "message_type": "text",
+      "timestamp": "2025-08-08T00:15:31.411799",
+      "metadata": {}
+    },
+    {
+      "message_id": "22d4c4e4-b267-46d6-834c-f16406ae621c",
+      "content": "Спасибо за сообщение! Это тестовый ответ от ИИ.",
+      "role": "assistant",
+      "message_type": "text",
+      "timestamp": "2025-08-08T00:15:32.921305",
+      "metadata": {
+        "processing_time": 1.5005438327789307,
+        "model_info": {
+          "name": "Demo AI",
+          "version": "1.0",
+          "provider": "Mock Provider"
+        }
+      }
+    }
+  ],
+  "metadata": {}
+}

@@ -8,16 +8,15 @@ from typing import Optional
 
 from PyQt6.QtWidgets import (
     QMainWindow, QWidget, QVBoxLayout,
-    QMenuBar, QStatusBar, QToolBar,
     QFileDialog, QMessageBox
 )
 from PyQt6.QtCore import Qt, QSettings, QEvent
-from PyQt6.QtGui import QFont
+# from PyQt6.QtGui import QFont  # Не используется
 
 from .ui.menu_bar import MenuBar
 from .ui.status_bar import StatusBar
 from .ui.custom_tab_widget import CustomTabWidget
-from .utils.config import Config
+# from .utils.config import Config  # Временно отключен
 
 
 class EditorApp(QMainWindow):
@@ -26,7 +25,7 @@ class EditorApp(QMainWindow):
     def __init__(self):
         super().__init__()
         self.logger = logging.getLogger(__name__)
-        self.config = Config()
+# Конфигурация временно отключена - не используется
         self.current_file: Optional[Path] = None
         
         self.init_ui()
@@ -71,8 +70,6 @@ class EditorApp(QMainWindow):
         self.menu_bar.file_save.triggered.connect(self.save_file)
         self.menu_bar.file_save_as.triggered.connect(self.save_file_as)
         self.menu_bar.file_exit.triggered.connect(self.close)
-        
-
         
         # Подключение сигналов редактора через tab_widget
         self.tab_widget.text_changed.connect(self.on_text_changed)
@@ -213,6 +210,11 @@ class EditorApp(QMainWindow):
         """Обработчик закрытия окна"""
         if self.check_save_changes():
             self.save_settings()
+            
+            # Очищаем ресурсы чата
+            if hasattr(self.tab_widget, 'cleanup'):
+                self.tab_widget.cleanup()
+            
             self.logger.info("Приложение закрыто")
             event.accept()
         else:

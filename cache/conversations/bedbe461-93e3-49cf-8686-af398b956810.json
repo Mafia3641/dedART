@@ -1,0 +1,32 @@
+{
+  "conversation_id": "bedbe461-93e3-49cf-8686-af398b956810",
+  "title": "п",
+  "created_at": "2025-08-07T23:41:15.527866",
+  "updated_at": "2025-08-07T23:41:16.053173",
+  "messages": [
+    {
+      "message_id": "d21627d1-7072-412c-ad92-88126d5b065c",
+      "content": "п",
+      "role": "user",
+      "message_type": "text",
+      "timestamp": "2025-08-07T23:41:15.527866",
+      "metadata": {}
+    },
+    {
+      "message_id": "4981f91a-7386-4742-87a5-816b05becd53",
+      "content": "Это демо-ответ от ИИ. Функция чата в разработке...",
+      "role": "assistant",
+      "message_type": "text",
+      "timestamp": "2025-08-07T23:41:16.053173",
+      "metadata": {
+        "processing_time": 0.5105688571929932,
+        "model_info": {
+          "name": "Demo AI",
+          "version": "1.0",
+          "provider": "Mock Provider"
+        }
+      }
+    }
+  ],
+  "metadata": {}
+}
