@@ -1,0 +1,45 @@
+﻿# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+.Python
+*.so
+
+# Virtual env
+.venv/
+venv/
+env/
+
+# Build/dist
+build/
+dist/
+*.egg-info/
+*.spec
+
+# Qt/Creator
+.qt_creator/
+*.pro.user*
+*.qrc.depends
+*.qmlc
+*.jsc
+
+# PyInstaller
+*.manifest
+*.dll
+
+# OS/IDE
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+
+# Cache
+.pytest_cache/
+.ruff_cache/
+.mypy_cache/
+
+# Logs
+*.log
+.venv/
+.cache/

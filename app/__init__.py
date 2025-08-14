@@ -1,0 +1,3 @@
+"""dedART GUI application package."""
+
+

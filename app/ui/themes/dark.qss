@@ -1,0 +1,5 @@
+/* Dark theme */
+QMainWindow { background: #232629; }
+QMenuBar, QMenu { background: #2b2f33; color: #e6e6e6; }
+QStatusBar { background: #2b2f33; }
+
