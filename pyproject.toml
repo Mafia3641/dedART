@@ -40,7 +40,7 @@ skip-string-normalization = true
 [tool.isort]
 profile = "black"
 line_length = 100
-src_paths = ["src"]
+src_paths = ["src", "app"]
 
 [tool.ruff]
 line-length = 100
@@ -48,5 +48,9 @@ target-version = "py310"
 
 [tool.ruff.lint]
 select = ["E", "F", "I", "B", "UP"]
+
+[tool.ruff.lint.isort]
+known-first-party = ["app"]
+known-third-party = ["PyQt6", "PIL"]
 
 

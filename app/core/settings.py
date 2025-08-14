@@ -28,6 +28,9 @@ class EditorSettings(BaseModel):
 	theme: str = "dark"
 	recent_projects: list[str] = []
 	autosave_minutes: int = 10
+	grid_enabled: bool = True
+	grid_step: int = 32
+	snap_to_grid: bool = True
 
 
 def load_settings() -> EditorSettings:
@@ -59,6 +62,21 @@ def load_settings() -> EditorSettings:
 			if version < 3:
 				data["version"] = 3
 				data["theme"] = "dark"
+				settings = EditorSettings(**data)
+				save_settings(settings)
+				return settings
+			# v4: добавить настройки сетки по умолчанию
+			if version < 4:
+				data["version"] = 4
+				data.setdefault("grid_enabled", True)
+				data.setdefault("grid_step", 32)
+				settings = EditorSettings(**data)
+				save_settings(settings)
+				return settings
+			# v5: добавить привязку к сетке по умолчанию
+			if version < 5:
+				data["version"] = 5
+				data.setdefault("snap_to_grid", True)
 				settings = EditorSettings(**data)
 				save_settings(settings)
 				return settings

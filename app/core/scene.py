@@ -40,6 +40,8 @@ class Node:
 	name: str
 	id: str = field(default_factory=lambda: str(uuid.uuid4()))
 	transform: Transform = field(default_factory=Transform)
+	sprite_path: str | None = None
+	sprite_region: dict | None = None  # {x,y,w,h}
 	children: list[Node] = field(default_factory=list)
 
 	def add_child(self, node: Node) -> None:
@@ -50,6 +52,8 @@ class Node:
 			"id": self.id,
 			"name": self.name,
 			"transform": self.transform.to_dict(),
+			"sprite_path": self.sprite_path,
+			"sprite_region": self.sprite_region,
 			"children": [child.to_dict() for child in self.children],
 		}
 
@@ -60,6 +64,8 @@ class Node:
 			id=str(data.get("id", str(uuid.uuid4()))),
 			transform=Transform.from_dict(data.get("transform", {})),
 		)
+		node.sprite_path = data.get("sprite_path") or None
+		node.sprite_region = data.get("sprite_region") or None
 		for child_data in data.get("children", []) or []:
 			node.children.append(Node.from_dict(child_data))
 		return node

@@ -1,12 +1,13 @@
 from __future__ import annotations
 
-from PyQt6.QtCore import Qt
+from PyQt6.QtCore import Qt, pyqtSignal
 from PyQt6.QtWidgets import QDockWidget, QMenu, QTreeWidget, QTreeWidgetItem
 
 from app.core.scene import Node, Scene
 
 
 class HierarchyDock(QDockWidget):
+	selection_changed = pyqtSignal(list)
 	def __init__(self, parent=None) -> None:
 		super().__init__("Hierarchy", parent)
 		self.setObjectName("HierarchyDock")
@@ -15,6 +16,7 @@ class HierarchyDock(QDockWidget):
 		self.setWidget(self._tree)
 		self._tree.setContextMenuPolicy(Qt.ContextMenuPolicy.CustomContextMenu)
 		self._tree.customContextMenuRequested.connect(self._on_context_menu)
+		self._tree.itemSelectionChanged.connect(self._on_tree_selection_changed)
 		self._scene: Scene | None = None
 
 	def set_scene(self, scene: Scene) -> None:
@@ -61,5 +63,35 @@ class HierarchyDock(QDockWidget):
 		elif act_remove and chosen == act_remove and mw is not None:
 			mw.undo_stack.push(RemoveNodeCommand(self._scene, node_id))  # type: ignore[arg-type]
 			self._rebuild()
+
+	def _on_tree_selection_changed(self) -> None:
+		ids: list[str] = []
+		for item in self._tree.selectedItems():
+			ids.append(item.data(0, 0))
+		self.selection_changed.emit(ids)
+
+	def set_selected_ids(self, ids: list[str]) -> None:
+		# Update selection in tree to match ids
+		self._tree.blockSignals(True)
+		self._tree.clearSelection()
+		if not ids:
+			self._tree.blockSignals(False)
+			return
+		stack = [self._tree.topLevelItem(i) for i in range(self._tree.topLevelItemCount())]
+		while stack:
+			item = stack.pop()
+			if not item:
+				continue
+			if item.data(0, 0) in ids:
+				item.setSelected(True)
+			for i in range(item.childCount()):
+				stack.append(item.child(i))
+		self._tree.blockSignals(False)
+
+	def get_selected_ids(self) -> list[str]:
+		return [i.data(0, 0) for i in self._tree.selectedItems()]
+
+	def refresh(self) -> None:
+		self._rebuild()
 
 
