@@ -31,12 +31,9 @@ class AssetsDock(QDockWidget):
 		vbox = QVBoxLayout(container)
 
 		btn_row = QHBoxLayout()
-		self._import_btn = QPushButton("Import…", container)
-		self._import_btn.clicked.connect(self._on_import)
+		self._import_btn = QPushButton("Create Tilemap…", container)
+		self._import_btn.clicked.connect(self._on_create_tilemap)
 		btn_row.addWidget(self._import_btn)
-		self._tilesets_btn = QPushButton("Tilesets…", container)
-		self._tilesets_btn.clicked.connect(self._open_tilesets_dialog)
-		btn_row.addWidget(self._tilesets_btn)
 		btn_row.addStretch(1)
 		vbox.addLayout(btn_row)
 
@@ -121,7 +118,7 @@ class AssetsDock(QDockWidget):
 				return False
 		return super().eventFilter(obj, event)
 
-	def _on_import(self) -> None:
+	def _on_create_tilemap(self) -> None:
 		if not self._project:
 			QMessageBox.information(
 				self,
@@ -129,15 +126,29 @@ class AssetsDock(QDockWidget):
 				"Open or create a project (File → New/Open)",
 			)
 			return
-		files, _ = QFileDialog.getOpenFileNames(
-			self, "Import Images", "", "Images (*.png *.jpg *.jpeg)"
+		file, _ = QFileDialog.getOpenFileName(
+			self,
+			"Choose image for Tilemap",
+			str(self._project.assets_dir),
+			"Images (*.png *.jpg *.jpeg)",
 		)
-		if not files:
+		if not file:
 			return
+		# Ensure image is inside assets; if not, import it first
 		from pathlib import Path
 
-		paths = import_images(self._project, [Path(f) for f in files])
-		if paths:
+		from app.core.assets import import_images, is_image_file
+		p = Path(file)
+		if p.parent != self._project.assets_dir:
+			if not is_image_file(p):
+				QMessageBox.information(self, "Invalid file", "Please choose an image file")
+				return
+			import_images(self._project, [p])
+			p = self._project.assets_dir / p.name
+		from app.ui.editors.tilemap_painter import TilemapPainterDialog
+		dlg = TilemapPainterDialog(self._project, str(p), self)
+		if dlg.exec() == dlg.DialogCode.Accepted:  # type: ignore[attr-defined]
+			# on save, the dialog already persists tilemap and injects node
 			self._rebuild()
 
 	def _update_preview(self) -> None:
@@ -222,15 +233,6 @@ class AssetsDock(QDockWidget):
 			elif act is act_tileset:
 				self._create_tileset_for_image(p)
 
-	def _open_tilesets_dialog(self) -> None:
-		# Переключаемся на вкладку TilesetsDock, если есть
-		mw = self.window()
-		try:
-			dock = mw.tilesets_dock  # type: ignore[attr-defined]
-			dock.raise_()
-			dock.show()
-		except Exception:
-			pass
 
 	def _create_tileset_for_image(self, image_path) -> None:
 		if not self._project:

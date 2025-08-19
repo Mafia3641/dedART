@@ -52,9 +52,9 @@ class TilesetsDock(QDockWidget):
 		self._choose_btn = QPushButton("Choose Image…", container)
 		self._choose_btn.clicked.connect(self._on_choose)
 		form.addWidget(self._choose_btn, 2, 0, 1, 2)
-		self._import_btn = QPushButton("Import", container)
-		self._import_btn.clicked.connect(self._on_import)
-		form.addWidget(self._import_btn, 3, 0, 1, 2)
+		self._create_tilemap_btn = QPushButton("Create Tilemap…", container)
+		self._create_tilemap_btn.clicked.connect(self._on_create_tilemap)
+		form.addWidget(self._create_tilemap_btn, 3, 0, 1, 2)
 		self._chosen_path: Path | None = None
 
 		container.setLayout(root)
@@ -85,18 +85,20 @@ class TilesetsDock(QDockWidget):
 			self._chosen_path = Path(file)
 			self._choose_btn.setText(self._chosen_path.name)
 
-	def _on_import(self) -> None:
+	def _on_create_tilemap(self) -> None:
 		if not self._project or not self._chosen_path:
 			return
+		# Ensure tileset exists
 		create_tileset_metadata(
 			self._project.assets_dir,
 			self._chosen_path,
 			int(self._tw.value()),
 			int(self._th.value()),
 		)
-		self._chosen_path = None
-		self._choose_btn.setText("Choose Image…")
-		self._reload_list()
+		# Open tilemap painter
+		from app.ui.editors.tilemap_painter import TilemapPainterDialog
+		dlg = TilemapPainterDialog(self._project, str(self._chosen_path), self)
+		dlg.exec()
 
 	def _on_open_editor(self, item: QListWidgetItem) -> None:
 		from app.ui.editors.tileset_editor import TilesetEditor
