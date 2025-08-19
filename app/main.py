@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import sys
+from pathlib import Path
 
 from PyQt6.QtWidgets import QApplication
 
@@ -15,7 +16,20 @@ def main() -> None:
 	# Применяем тему из настроек
 	_apply_theme(app, settings.theme)
 
-	window.show()
+	# Попытаться открыть последний проект
+	try:
+		from app.core.project import open_project
+
+		last = settings.recent_projects[0] if settings.recent_projects else None
+		if last:
+			p = Path(last)
+			project = open_project(p)
+			window._set_current_project(project)
+	except Exception:
+		# Игнорируем ошибки — откроется пустой проект
+		pass
+
+	window.showMaximized()
 	code = app.exec()
 	sys.exit(code)
 

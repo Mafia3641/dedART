@@ -5,7 +5,7 @@ from pathlib import Path
 
 from PyQt6.QtCore import QByteArray, QSettings, Qt
 from PyQt6.QtGui import QAction, QActionGroup
-from PyQt6.QtWidgets import QApplication, QDialog, QDockWidget, QMainWindow
+from PyQt6.QtWidgets import QApplication, QDialog, QDockWidget, QMainWindow, QTabWidget
 
 from app.core.commands import (
 	DeleteNodesCommand,
@@ -13,7 +13,7 @@ from app.core.commands import (
 	SetStatusMessageCommand,
 	create_undo_stack,
 )
-from app.core.project import create_new_project, open_project
+from app.core.project import create_new_project, load_scene, open_project, save_scene, scene_path
 from app.core.settings import add_recent_project, load_settings, save_settings
 from app.ui.canvas import CanvasView
 from app.ui.dialogs.new_project import NewProjectDialog
@@ -21,6 +21,7 @@ from app.ui.docks.assets import AssetsDock
 from app.ui.docks.console import ConsoleDock
 from app.ui.docks.hierarchy import HierarchyDock
 from app.ui.docks.inspector import InspectorDock
+from app.ui.docks.tilesets import TilesetsDock
 
 
 class MainWindow(QMainWindow):
@@ -77,22 +78,37 @@ class MainWindow(QMainWindow):
 		self.hierarchy_dock = HierarchyDock(self)
 		self.inspector_dock = InspectorDock(self)
 		self.assets_dock = AssetsDock(self)
+		self.tilesets_dock = TilesetsDock(self)
 		self.console_dock = ConsoleDock(self)
 
+
+		# Разрешаем табы и вложенные доки; вкладки сверху, перестановка мышью
+		self.setDockOptions(
+			self.dockOptions()
+			| QMainWindow.DockOption.AllowTabbedDocks
+			| QMainWindow.DockOption.AllowNestedDocks
+		)
+		self.setTabPosition(
+			Qt.DockWidgetArea.AllDockWidgetAreas, QTabWidget.TabPosition.North
+		)
 
 		self.addDockWidget(Qt.DockWidgetArea.LeftDockWidgetArea, self.hierarchy_dock)
 		self.addDockWidget(Qt.DockWidgetArea.RightDockWidgetArea, self.inspector_dock)
 		self.addDockWidget(Qt.DockWidgetArea.BottomDockWidgetArea, self.console_dock)
 		self.addDockWidget(Qt.DockWidgetArea.LeftDockWidgetArea, self.assets_dock)
+		self.addDockWidget(Qt.DockWidgetArea.LeftDockWidgetArea, self.tilesets_dock)
 
 		# Assets — слева снизу. Для этого создаём разделитель с hierarchy и кладём assets вниз
 		self.splitDockWidget(self.hierarchy_dock, self.assets_dock, Qt.Orientation.Vertical)
+		self.tabifyDockWidget(self.assets_dock, self.tilesets_dock)
 		self.assets_dock.setFloating(False)
+		self.tilesets_dock.setFloating(False)
 
 		# Panels toggles
 		self._register_panel_toggle("Hierarchy", self.hierarchy_dock)
 		self._register_panel_toggle("Inspector", self.inspector_dock)
 		self._register_panel_toggle("Assets", self.assets_dock)
+		self._register_panel_toggle("Tilesets", self.tilesets_dock)
 		self._register_panel_toggle("Console", self.console_dock)
 
 		# Status bar
@@ -110,10 +126,13 @@ class MainWindow(QMainWindow):
 		self._canvas.set_scene(self._scene)
 		self.hierarchy_dock.selection_changed.connect(self._canvas.set_selected_ids)
 		self._canvas.selection_changed.connect(self.hierarchy_dock.set_selected_ids)  # type: ignore[attr-defined]
+		# Синхронизация выбора с инспектором как от Hierarchy, так и от Canvas
 		self.inspector_dock.set_scene(self._scene)
 		self.hierarchy_dock.selection_changed.connect(self.inspector_dock.set_selected_ids)
+		self._canvas.selection_changed.connect(self.inspector_dock.set_selected_ids)  # type: ignore[attr-defined]
 		# Assets dock receives current project root (if any)
 		self.assets_dock.set_project(None)
+		self.tilesets_dock.set_project(None)
 		# Hook to create sprite from Assets on double click
 		self.create_sprite_from_asset = self._create_sprite_from_asset  # type: ignore[assignment]
 
@@ -164,6 +183,8 @@ class MainWindow(QMainWindow):
 		# Restore layout
 		self._settings = QSettings("dedART", "Editor")
 		self._restore_dock_layout()
+		# Ensure window starts maximized regardless of stored geometry
+		self.setWindowState(self.windowState() | Qt.WindowState.WindowMaximized)
 
 		# Theme toggle state
 		settings = load_settings()
@@ -187,7 +208,13 @@ class MainWindow(QMainWindow):
 		self.edit_menu.addAction(demo)
 
 	def closeEvent(self, event):  # type: ignore[override]
+		# Persist window layout and current scene
 		self._save_dock_layout()
+		try:
+			if self._project is not None and self._scene is not None:
+				save_scene(self._project, self._scene)
+		except Exception:
+			pass
 		super().closeEvent(event)
 
 	def _restore_dock_layout(self) -> None:
@@ -286,10 +313,39 @@ class MainWindow(QMainWindow):
 			action.setChecked(s == step)
 
 	def _set_current_project(self, project) -> None:
-		# Replace current project context: assets, future scene loading here
+		# Save current scene for previous project
+		prev_has_project = getattr(self, "_project", None) is not None
+		prev_has_scene = getattr(self, "_scene", None) is not None
+		if prev_has_project and prev_has_scene:
+			try:
+				save_scene(self._project, self._scene)
+			except Exception:
+				pass
+		# Switch project context
 		self._project = project
 		self.assets_dock.set_project(project)
-		# TODO: load last scene from project.json in future tasks
+		self.tilesets_dock.set_project(project)
+		# Load existing scene or create default
+		self._load_or_create_scene_for_project(project)
+
+	def _load_or_create_scene_for_project(self, project) -> None:
+		from app.core.scene import Scene
+
+		default_name = "main"
+		path = scene_path(project, default_name)
+		if path.exists():
+			scene = load_scene(project, default_name)
+		else:
+			scene = Scene(name=default_name)
+			# Ensure dirs exist and save immediately
+			try:
+				save_scene(project, scene)
+			except Exception:
+				pass
+		self._scene = scene
+		self.hierarchy_dock.set_scene(self._scene)
+		self._canvas.set_scene(self._scene)
+		self.inspector_dock.set_scene(self._scene)
 
 	def _create_sprite_from_asset(self, image_path: str, region: dict | None = None) -> None:
 		# Create a sprite node via command for Undo/Redo
@@ -303,6 +359,12 @@ class MainWindow(QMainWindow):
 				self._scene.root.children[-1].sprite_region = region
 		self.hierarchy_dock.refresh()
 		self._canvas.viewport().update()
+		# Save scene immediately for persistence
+		try:
+			if self._project is not None:
+				save_scene(self._project, self._scene)
+		except Exception:
+			pass
 
 	def _action_new_project(self) -> None:
 		dlg = NewProjectDialog(self)
@@ -315,7 +377,7 @@ class MainWindow(QMainWindow):
 			self.statusBar().showMessage(f"Project created: {project.root}")
 			add_recent_project(str(project.root))
 			self._rebuild_recent_menu()
-			self.assets_dock.set_project(project)
+			self._set_current_project(project)
 			self.assets_dock._import_btn.setEnabled(True)
 
 	def _action_open_project(self) -> None:

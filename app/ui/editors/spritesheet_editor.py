@@ -19,8 +19,8 @@ class SpritesheetEditor(QDialog):
 		self._pix = QPixmap(image_path)
 		self._x = 0
 		self._y = 0
-		self._w = min(64, self._pix.width())
-		self._h = min(64, self._pix.height())
+		self._w = self._pix.width()
+		self._h = self._pix.height()
 
 		layout = QVBoxLayout(self)
 		self._preview = QLabel(self)
@@ -46,9 +46,9 @@ class SpritesheetEditor(QDialog):
 		row.addWidget(self._sx)
 		row.addWidget(QLabel("Y:"))
 		row.addWidget(self._sy)
-		row.addWidget(QLabel("W:"))
+		row.addWidget(QLabel("X:"))
 		row.addWidget(self._sw)
-		row.addWidget(QLabel("H:"))
+		row.addWidget(QLabel("Y:"))
 		row.addWidget(self._sh)
 		layout.addLayout(row)
 
@@ -70,21 +70,29 @@ class SpritesheetEditor(QDialog):
 		canvas = QPixmap(self._preview.size())
 		canvas.fill(Qt.GlobalColor.black)
 		p = QPainter(canvas)
-		scaled = self._pix.scaled(
-			self._preview.width(),
-			self._preview.height(),
-			Qt.AspectRatioMode.KeepAspectRatio,
+		# Compute uniform scale to fit while keeping aspect
+		view_w = max(1, self._preview.width())
+		view_h = max(1, self._preview.height())
+		img_w = max(1, self._pix.width())
+		img_h = max(1, self._pix.height())
+		scale = min(view_w / img_w, view_h / img_h)
+		scaled_w = int(img_w * scale)
+		scaled_h = int(img_h * scale)
+		offset_x = (view_w - scaled_w) // 2
+		offset_y = (view_h - scaled_h) // 2
+		scaled_pix = self._pix.scaled(
+			scaled_w,
+			scaled_h,
+			Qt.AspectRatioMode.IgnoreAspectRatio,
 			Qt.TransformationMode.SmoothTransformation,
 		)
-		p.drawPixmap(0, 0, scaled)
+		p.drawPixmap(offset_x, offset_y, scaled_pix)
 		p.setPen(QPen(Qt.GlobalColor.red, 2))
-		scale_x = self._preview.width() / max(1, self._pix.width())
-		scale_y = self._preview.height() / max(1, self._pix.height())
 		rect = QRect(
-			int(self._x * scale_x),
-			int(self._y * scale_y),
-			int(self._w * scale_x),
-			int(self._h * scale_y),
+			int(offset_x + self._x * scale),
+			int(offset_y + self._y * scale),
+			int(self._w * scale),
+			int(self._h * scale),
 		)
 		p.drawRect(rect)
 		p.end()

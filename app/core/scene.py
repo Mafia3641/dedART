@@ -6,6 +6,8 @@ from dataclasses import dataclass, field
 from pathlib import Path
 from typing import Any
 
+from app.core.tilemap import Tilemap
+
 
 @dataclass
 class Transform:
@@ -59,6 +61,9 @@ class Node:
 
 	@staticmethod
 	def from_dict(data: dict[str, Any]) -> Node:
+		# If tilemap payload exists, construct TilemapNode
+		if data.get("tilemap") is not None:
+			return TilemapNode.from_dict(data)
 		node = Node(
 			name=str(data.get("name", "Node")),
 			id=str(data.get("id", str(uuid.uuid4()))),
@@ -66,6 +71,33 @@ class Node:
 		)
 		node.sprite_path = data.get("sprite_path") or None
 		node.sprite_region = data.get("sprite_region") or None
+		for child_data in data.get("children", []) or []:
+			node.children.append(Node.from_dict(child_data))
+		return node
+
+
+@dataclass
+class TilemapNode(Node):
+	"""Node with embedded tilemap data."""
+	tilemap: Tilemap | None = None
+
+	def to_dict(self) -> dict[str, Any]:  # type: ignore[override]
+		base = super().to_dict()
+		base["tilemap"] = self.tilemap.to_dict() if self.tilemap else None
+		return base
+
+	@staticmethod
+	def from_dict(data: dict[str, Any]) -> TilemapNode:
+		node = TilemapNode(
+			name=str(data.get("name", "Tilemap")),
+			id=str(data.get("id", str(uuid.uuid4()))),
+			transform=Transform.from_dict(data.get("transform", {})),
+		)
+		if data.get("tilemap") is not None:
+			try:
+				node.tilemap = Tilemap.from_dict(data.get("tilemap", {}))
+			except Exception:
+				node.tilemap = None
 		for child_data in data.get("children", []) or []:
 			node.children.append(Node.from_dict(child_data))
 		return node

@@ -3,16 +3,18 @@ from __future__ import annotations
 from PyQt6.QtCore import QEvent, Qt, QUrl
 from PyQt6.QtGui import QPixmap
 from PyQt6.QtWidgets import (
-    QDockWidget,
-    QFileDialog,
-    QHBoxLayout,
-    QLabel,
-    QMessageBox,
-    QPushButton,
-    QTreeWidget,
-    QTreeWidgetItem,
-    QVBoxLayout,
-    QWidget,
+	QDockWidget,
+	QFileDialog,
+	QHBoxLayout,
+	QInputDialog,
+	QLabel,
+	QMenu,
+	QMessageBox,
+	QPushButton,
+	QTreeWidget,
+	QTreeWidgetItem,
+	QVBoxLayout,
+	QWidget,
 )
 
 from app.core.assets import import_images, is_image_file
@@ -32,12 +34,17 @@ class AssetsDock(QDockWidget):
 		self._import_btn = QPushButton("Import…", container)
 		self._import_btn.clicked.connect(self._on_import)
 		btn_row.addWidget(self._import_btn)
+		self._tilesets_btn = QPushButton("Tilesets…", container)
+		self._tilesets_btn.clicked.connect(self._open_tilesets_dialog)
+		btn_row.addWidget(self._tilesets_btn)
 		btn_row.addStretch(1)
 		vbox.addLayout(btn_row)
 
 		self._tree = QTreeWidget(container)
 		self._tree.setHeaderLabels(["Name"])
 		self._tree.itemDoubleClicked.connect(self._on_item_double_clicked)
+		self._tree.setContextMenuPolicy(Qt.ContextMenuPolicy.CustomContextMenu)
+		self._tree.customContextMenuRequested.connect(self._on_context_menu)
 		self._tree.setAcceptDrops(True)
 		self._tree.viewport().setAcceptDrops(True)
 		self._tree.installEventFilter(self)
@@ -191,5 +198,52 @@ class AssetsDock(QDockWidget):
 				mw.create_sprite_from_asset(str(p), region)  # type: ignore[attr-defined]
 			except Exception:
 				mw.create_sprite_from_asset(str(p))  # type: ignore[attr-defined]
+
+	def _on_context_menu(self, pos) -> None:
+		items = self._tree.selectedItems()
+		if not items:
+			return
+		path_str = items[0].data(0, 0)
+		if not path_str:
+			return
+		from pathlib import Path
+
+		p = Path(path_str)
+		menu = QMenu(self)
+		if is_image_file(p):
+			act_anim = menu.addAction("Open Animation Editor…")
+			act_tileset = menu.addAction("Create Tileset…")
+			act = menu.exec(self._tree.viewport().mapToGlobal(pos))
+			if act is act_anim:
+				from app.ui.editors.animation_editor import AnimationEditor
+
+				dlg = AnimationEditor(str(p), parent=self)
+				dlg.exec()
+			elif act is act_tileset:
+				self._create_tileset_for_image(p)
+
+	def _open_tilesets_dialog(self) -> None:
+		# Переключаемся на вкладку TilesetsDock, если есть
+		mw = self.window()
+		try:
+			dock = mw.tilesets_dock  # type: ignore[attr-defined]
+			dock.raise_()
+			dock.show()
+		except Exception:
+			pass
+
+	def _create_tileset_for_image(self, image_path) -> None:
+		if not self._project:
+			return
+		w, ok = QInputDialog.getInt(self, "Tile Width", "Width", 32, 1, 4096, 1)
+		if not ok:
+			return
+		h, ok = QInputDialog.getInt(self, "Tile Height", "Height", 32, 1, 4096, 1)
+		if not ok:
+			return
+		from app.core.tilemap import create_tileset_metadata
+
+		create_tileset_metadata(self._project.assets_dir, image_path, w, h)
+		self._rebuild()
 
 
